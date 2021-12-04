@@ -1,1 +1,15 @@
-# gui_applications_in_docker
+# Example run gui applications in docker
+
+    1. All commands need sudo or root permissions
+    2. install docker 
+    3. start and enable docker service
+    4. Create custom image , size 1,4GB approximately
+        <code>docker build --build-arg MWAPP_CONFIG=data.bkc -t imagename . </code>
+                            or
+        <code>docker build --build-arg MWAPP_CONFIG=data.bkc -t imagename - < (full_path_to_dockerfile)/Dockerfile </code>
+    5. run image in container disposable (it will be destroyed after finishing), there are other modes, I chose this one 
+        <code>docker run -ti --rm -e MWAPP_CONFIG='data.bkc' -v /run/media/alex/mfile/mwneo:/home/alex -p 8080:8080 -p 5901:5901 -p 8000:8000 -p 9595:9595 imagename </code>
+    6. run vnc  ( set resolution your screen )
+          <code>tightvncserver :1 -geometry 1920x1080 -depth 24</code>
+    7. set password to vnc ( 8 digits )
+    8. open vncview and run yours applications
